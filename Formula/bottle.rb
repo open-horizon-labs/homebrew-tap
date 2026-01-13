@@ -1,15 +1,15 @@
 class Bottle < Formula
   desc "Curated snapshot manager for the Cloud Atlas AI tool stack"
   homepage "https://github.com/cloud-atlas-ai/bottle"
-  version "0.1.0"
+  version "0.1.2"
   if OS.mac?
     if Hardware::CPU.arm?
-      url "https://github.com/cloud-atlas-ai/bottle/releases/download/v0.1.0/bottle-aarch64-apple-darwin.tar.xz"
-      sha256 "f7fdb56cdac2a1231307375c3347af6f83f6df4530cc5d4573ddc5abfee2b4a9"
+      url "https://github.com/cloud-atlas-ai/bottle/releases/download/v0.1.2/bottle-aarch64-apple-darwin.tar.xz"
+      sha256 "b59dc21dd2ee9b09de9dff223699882ca2857928908ef0e516eec3f84d572c92"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/cloud-atlas-ai/bottle/releases/download/v0.1.0/bottle-x86_64-apple-darwin.tar.xz"
-      sha256 "ce994ec159c79645ad90038f93ba9af00a43bf3085fb783db4f1bb672d071ebe"
+      url "https://github.com/cloud-atlas-ai/bottle/releases/download/v0.1.2/bottle-x86_64-apple-darwin.tar.xz"
+      sha256 "fc64a463139a45aea4d2ae5ddc635af751476256758f8c253a647fd600019d72"
     end
   end
   license "MIT"
