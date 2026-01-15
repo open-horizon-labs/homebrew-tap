@@ -1,15 +1,15 @@
 class Bottle < Formula
   desc "Curated snapshot manager for the Open Horizon Labs tool stack"
   homepage "https://github.com/open-horizon-labs/bottle"
-  version "0.1.7"
+  version "0.1.8"
   if OS.mac?
     if Hardware::CPU.arm?
-      url "https://github.com/open-horizon-labs/bottle/releases/download/v0.1.7/bottle-aarch64-apple-darwin.tar.xz"
-      sha256 "c64fca5c3618314cb49ad222daad06191186122ddef7ac4b10e8f09ad21adc93"
+      url "https://github.com/open-horizon-labs/bottle/releases/download/v0.1.8/bottle-aarch64-apple-darwin.tar.xz"
+      sha256 "2490c16d5cf9d27d9889d8ada27ad896e0f5cebeb949df35c31ce451c3fdcd90"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/open-horizon-labs/bottle/releases/download/v0.1.7/bottle-x86_64-apple-darwin.tar.xz"
-      sha256 "9242bdd7c345bbf0af82ce1724ae9818787b85323ac90aa7988327c7ea8a89fc"
+      url "https://github.com/open-horizon-labs/bottle/releases/download/v0.1.8/bottle-x86_64-apple-darwin.tar.xz"
+      sha256 "fb7bd405c53920117dfee55acfbb72b39647e3403b840921b12795e72ecc696a"
     end
   end
   license "MIT"
