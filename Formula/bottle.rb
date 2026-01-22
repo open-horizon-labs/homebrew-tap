@@ -2,50 +2,33 @@ class Bottle < Formula
   desc "Curated snapshot manager for the Open Horizon Labs tool stack"
   homepage "https://github.com/open-horizon-labs/bottle"
   version "0.3.0"
-  if OS.mac?
-    if Hardware::CPU.arm?
-      url "https://github.com/open-horizon-labs/bottle/releases/download/v0.3.0/bottle-aarch64-apple-darwin.tar.xz"
-      sha256 "aace0a1a55dc7a6f7e521c53782c722a4f7e8f532698c9b4715f37909e5ed678"
-    end
-    if Hardware::CPU.intel?
-      url "https://github.com/open-horizon-labs/bottle/releases/download/v0.3.0/bottle-x86_64-apple-darwin.tar.xz"
-      sha256 "196070435f3205cdbd43ddef3eb8b9b55e2f7326e07b53f74d62f6fe924b2e2e"
-    end
-  end
   license "MIT"
 
-  BINARY_ALIASES = {
-    "aarch64-apple-darwin": {},
-    "x86_64-apple-darwin":  {},
-  }.freeze
-
-  def target_triple
-    cpu = Hardware::CPU.arm? ? "aarch64" : "x86_64"
-    os = OS.mac? ? "apple-darwin" : "unknown-linux-gnu"
-
-    "#{cpu}-#{os}"
+  on_macos do
+    if Hardware::CPU.arm?
+      url "https://github.com/open-horizon-labs/bottle/releases/download/v0.3.0/bottle-0.3.0-aarch64-apple-darwin.tar.gz"
+      sha256 "4c453d01fce8d988dbe4f8f99a2f154535a6c3067c6f65b4fd784209518083cf"
+    else
+      url "https://github.com/open-horizon-labs/bottle/releases/download/v0.3.0/bottle-0.3.0-x86_64-apple-darwin.tar.gz"
+      sha256 "29f1af4179d432b3691be719a387a062dff0a3730b239d6c9cdfc516af6f93d7"
+    end
   end
 
-  def install_binary_aliases!
-    BINARY_ALIASES[target_triple.to_sym].each do |source, dests|
-      dests.each do |dest|
-        bin.install_symlink bin/source.to_s => dest
-      end
+  on_linux do
+    if Hardware::CPU.arm?
+      url "https://github.com/open-horizon-labs/bottle/releases/download/v0.3.0/bottle-0.3.0-aarch64-unknown-linux-musl.tar.gz"
+      sha256 "0c0594c627c9be71fc50bbc7b46ba3bd12539b1cbec9537f84821b723353d6b1"
+    else
+      url "https://github.com/open-horizon-labs/bottle/releases/download/v0.3.0/bottle-0.3.0-x86_64-unknown-linux-musl.tar.gz"
+      sha256 "1d46a24ff065c1dea53dcf4d34c8030349f9abcc2ca76274a5754805b5ba9a53"
     end
   end
 
   def install
-    bin.install "bottle" if OS.mac? && Hardware::CPU.arm?
-    bin.install "bottle" if OS.mac? && Hardware::CPU.intel?
+    bin.install "bottle"
+  end
 
-    install_binary_aliases!
-
-    # Homebrew will automatically install these, so we don't need to do that
-    doc_files = Dir["README.*", "readme.*", "LICENSE", "LICENSE.*", "CHANGELOG.*"]
-    leftover_contents = Dir["*"] - doc_files
-
-    # Install any leftover files in pkgshare; these are probably config or
-    # sample files.
-    pkgshare.install(*leftover_contents) unless leftover_contents.empty?
+  test do
+    system "#{bin}/bottle", "--version"
   end
 end
