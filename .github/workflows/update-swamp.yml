@@ -1,0 +1,26 @@
+name: Update Swamp
+on:
+  schedule:
+    - cron: '7,22,37,52 * * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: update-swamp
+  cancel-in-progress: false
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Verify release and update formula
+        run: python3 scripts/update-swamp.py
+      - name: Publish formula update
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- Formula/swamp.rb; then exit 0; fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add Formula/swamp.rb
+          git commit -m 'chore: update Swamp release'
+          git push
