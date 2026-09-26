@@ -10,11 +10,12 @@ class Swamp < Formula
   depends_on :macos
 
   def install
-    bin.install "swamp", "swamp-mcp"
+    bin.install "swamp"
+    (pkgshare/"skills").install "skills/swamp" if File.directory?("skills/swamp")
   end
 
   test do
     assert_match "swamp #{version}", shell_output("#{bin}/swamp --version")
-    assert_match "cleanup-check", shell_output("#{bin}/swamp --help")
+    assert_match "report", shell_output("#{bin}/swamp --help")
   end
 end
