@@ -1,9 +1,9 @@
 class Swamp < Formula
   desc "Project-oriented disk usage, history, and reviewed developer cleanup"
   homepage "https://github.com/open-horizon-labs/swamp"
-  url "https://github.com/open-horizon-labs/swamp/releases/download/v0.8.1/swamp-0.8.1-aarch64-apple-darwin.tar.gz"
-  version "0.8.1"
-  sha256 "b9018cb8ed6be747b57819d492a823dd4f2e56d7a7687234990add4f46280135"
+  url "https://github.com/open-horizon-labs/swamp/releases/download/v0.8.2/swamp-0.8.2-aarch64-apple-darwin.tar.gz"
+  version "0.8.2"
+  sha256 "09494c4c62f1226de20069ed0377c0652153f94ba22efdcb73120c666324c3cf"
   license "MIT"
 
   depends_on arch: :arm64
