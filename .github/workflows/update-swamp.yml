@@ -10,7 +10,8 @@ concurrency:
   cancel-in-progress: false
 jobs:
   update:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, linux, x64, linux-general]
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v5
       - name: Test updater guards
